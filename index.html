@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satin Heritage | Maranao Culinary Traditions</title>
+    <style>
+        :root {
+            --deep-maroon: #5d1010;
+            --gold: #d4af37;
+            --cream: #fdfaf1;
+            --charcoal: #2d2d2d;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: var(--cream);
+            color: var(--charcoal);
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+
+        /* Login Screen */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--deep-maroon);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: var(--gold);
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border: 3px solid var(--gold);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Main Content */
+        #main-site { display: none; }
+
+        header {
+            background: var(--deep-maroon);
+            color: var(--gold);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--gold);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.8;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--deep-maroon);
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Rewards & Scanner */
+        .rewards-card {
+            background: linear-gradient(135deg, var(--deep-maroon), #800000);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .points-display {
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 10px 0;
+        }
+
+        .scanner-mockup {
+            border: 2px dashed var(--gold);
+            padding: 40px;
+            margin: 20px 0;
+            background: #f9f9f9;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        input { display: block; width: 100%; margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        button { background: var(--gold); border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
+        .btn-redeem { background: var(--gold); color: var(--deep-maroon); padding: 15px 30px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <!-- Login Section -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <h1>SATIN HERITAGE</h1>
+            <p style="color: #666">Access the Sacred Archive</p>
+            <input type="text" placeholder="Username" id="u">
+            <input type="password" placeholder="Password" id="p">
+            <button onclick="login()">ENTER</button>
+        </div>
+    </div>
+
+    <!-- Main Website -->
+    <div id="main-site">
+        <header>
+            <h1>SATIN HERITAGE</h1>
+            <nav>
+                <a href="#history">History</a>
+                <a href="#rewards">Rewards</a>
+                <a href="#about">About Us</a>
+            </nav>
+        </header>
+
+        <!-- History Section -->
+        <section id="history">
+            <h2>The Legacy of Pisasati</h2>
+            <p>
+                Pisasati is far more than a traditional dish from Mindanao; it is a sacred culinary thread that binds the Maranao people to their ancestral history and communal identity. Rooted in the heart of Lanao, this delicacy serves as a living artifact of <em>Kaporokada</em> (togetherness), representing a deep sense of care and respect that is passed down through generations from elders to the youth.
+            </p>
+            <p>
+                The preparation of Pisasati is a rhythmic ritual that begins with Tulingan (bullet tuna), a foundation that honors the ancient preservation methods used to sustain families across the Lanao region. This smoky base is expertly folded with freshly grated coconut, which provides a subtle sweetness and a textured bite that reflects the natural bounty of the land.
+            </p>
+            <p>
+                The true "spirit" of the dish, however, lies in the inclusion of Palapa—the iconic Maranao condiment made from sakurab (native scallions), ginger, and bird's eye chili—which infuses the mixture with a sharp, aromatic heat. These ingredients are bound together and fried into golden, flavor-dense portions, maintaining their natural, earthy tones. Whether enjoyed as a humble accompaniment to rice or served as a centerpiece during a grand <em>Kanduri</em> (feast), Pisasati remains a heartfelt symbol of Maranao resilience, ensuring that as long as the recipe is shared, the rich heritage and social fabric of the "People of the Lake" will continue to thrive.
+            </p>
+        </section>
+
+        <!-- Rewards Section -->
+        <section id="rewards">
+            <h2>Heritage Rewards</h2>
+            <div class="rewards-card">
+                <h3>Your Loyalty Points</h3>
+                <div class="points-display" id="points-count">0</div>
+                <p>Collect 10 points to redeem a free traditional meal.</p>
+                <button class="btn-redeem" onclick="redeem()">Redeem Free Meal</button>
+            </div>
+
+            <h3>Scan QR Code</h3>
+            <p>Scan the code at our physical locations to earn 1 point per visit.</p>
+            <div class="scanner-mockup" onclick="simulateScan()">
+                <p>[ Click to Simulate QR Scan ]</p>
+                <small>(In a live environment, this would activate the device camera)</small>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <footer id="about">
+            <h2>About Us</h2>
+            <p>Satin Heritage is dedicated to the preservation and celebration of Maranao culture through the culinary arts. We believe that every bite of Pisasati tells a story of the Lake Lanao region—a story of strength, community, and flavor.</p>
+            <p>&copy; 2023 Satin Heritage. Preserving the flavors of the People of the Lake.</p>
+            <p>Contact: heritage@satin.ph | Lanao del Sur, Philippines</p>
+        </footer>
+    </div>
+
+    <script>
+        let points = 0; // Initialize points to 0
+
+        // Function to handle login
+        function login() {
+            // In a real application, you'd validate username and password here.
+            // For this example, any non-empty input will allow login.
+            const username = document.getElementById('u').value;
+            const password = document.getElementById('p').value;
+
+            if (username && password) {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+            } else {
+                alert("Please enter both username and password.");
+            }
+        }
+
+        // Function to simulate scanning a QR code
+        function simulateScan() {
+            points += 1; // Increment points by 1
+            document.getElementById('points-count').innerText = points; // Update the displayed points
+            alert("QR Code Scanned! +1 Point added to your heritage account.");
+        }
+
+        // Function to redeem a free meal
+        function redeem() {
+            if (points >= 10) {
+                points -= 10; // Deduct 10 points
+                document.getElementById('points-count').innerText = points; // Update displayed points
+                alert("Redemption Successful! Show this screen to our staff for your free meal.");
+            } else {
+                let needed = 10 - points;
+                alert("You need \( " + needed + " \) more points to redeem a free meal.");
+            }
+        }
+    </script>
+</body>
+</html>
